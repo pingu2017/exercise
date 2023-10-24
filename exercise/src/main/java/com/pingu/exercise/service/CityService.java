@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import com.pingu.exercise.entity.City;
+import com.pingu.exercise.api.CityFilterDto;
 import com.pingu.exercise.repository.CityCustomRepo;
 import com.pingu.exercise.repository.CityRepo;
 
@@ -19,7 +19,7 @@ public class CityService {
 	private final CityRepo cityRepo;
 	private final CityCustomRepo cityCustomRepo;
 
-	public Page<City> filter(String code, int pop, Pageable pageable){
+	public Page<CityFilterDto> filter(String code, Long pop, Pageable pageable){
 		return cityCustomRepo.filter(code, pop, pageable);
 	}
 

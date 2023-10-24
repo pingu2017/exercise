@@ -19,11 +19,13 @@ public class Country {
 
 	@Id
 	private Long id;
-	private String Code;
-	private String Name;
-	private String Continent;
-	private String Region;
-	private double SurfaceArea;
-	private int IndepYear;
-	private int Population;
+	private String code;
+	private String name;
+	private String continent;
+	private String region;
+	@Column(name = "SurfaceArea")
+	private double surfaceArea;
+	@Column(name = "IndepYear")
+	private int indepYear;
+	private Long population;
 }

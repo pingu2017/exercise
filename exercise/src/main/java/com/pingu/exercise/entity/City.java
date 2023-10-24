@@ -1,6 +1,6 @@
 package com.pingu.exercise.entity;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -14,15 +14,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="city")
+@Table(name = "city")
 public class City {
 
 	@Id
 	private Long id;
 
-	private String Name;
-	private String Countrycode;
-	private String District;
-	private int Population;
+	private String name;
+	@Column(name = "CountryCode")
+	private String countryCode;
+	private String district;
+	private Long population;
 
 }

@@ -26,7 +26,7 @@ public class Controller {
 	}
 
 	@GetMapping()
-	public Page<City> filter(@RequestParam String code, @RequestParam int pop, Pageable pageable){
+	public Page<CityFilterDto> filter(@RequestParam(required = false) String code, @RequestParam(required = false) Long pop, Pageable pageable){
 		return cityService.filter(code, pop, pageable);
 	}
 

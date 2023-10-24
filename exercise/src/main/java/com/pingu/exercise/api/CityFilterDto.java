@@ -1,12 +1,18 @@
 package com.pingu.exercise.api;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CityFilterDto {
-
-	private String CountryCode;
-	private int Population;
+	private String cityName;
+	private String countryName;
+	private  String language;
+	private String region;
+	private int IndepYear;
 }
