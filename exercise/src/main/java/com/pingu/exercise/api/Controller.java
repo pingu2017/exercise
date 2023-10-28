@@ -1,5 +1,7 @@
 package com.pingu.exercise.api;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +30,11 @@ public class Controller {
 	@GetMapping()
 	public Page<CityFilterDto> filter(@RequestParam(required = false) String code, @RequestParam(required = false) Long pop, Pageable pageable){
 		return cityService.filter(code, pop, pageable);
+	}
+
+	@GetMapping("/oneCity/{code}")
+	public List<CityProjectionDto> getCity(@PathVariable("code") String code){
+		return cityService.getCity(code);
 	}
 
 

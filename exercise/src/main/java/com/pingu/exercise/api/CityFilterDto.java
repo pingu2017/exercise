@@ -12,7 +12,5 @@ import lombok.NoArgsConstructor;
 public class CityFilterDto {
 	private String cityName;
 	private String countryName;
-	private  String language;
 	private String region;
-	private int IndepYear;
 }
