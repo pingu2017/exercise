@@ -10,7 +10,7 @@ class CityFilterDtoTest {
 	void getCityName() {
 		final CityFilterDto cityFilterDto=new CityFilterDto("서울","대한민국", "한국어");
 		final String cityName=cityFilterDto.getCityName();
-		assertEquals("서울", cityName);
+		assertEquals("한국", cityName);
 	}
 
 	@Test
