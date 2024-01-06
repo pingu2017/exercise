@@ -1,0 +1,49 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat</title>
+</head>
+<body>
+<div id="chat" style="height: 300px; overflow-y: scroll;"></div>
+<input type="text" id="messageInput" placeholder="Type your message">
+<button onclick="sendMessage()">Send</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script>
+        const socket = new SockJS('/chat');
+        const stompClient = Stomp.over(socket);
+
+        stompClient.connect({}, function(frame) {
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/topic/public', function(response) {
+                displayMessage(JSON.parse(response.body));
+            });
+        });
+
+        function sendMessage() {
+            const content = document.getElementById('messageInput').value;
+            const sender = 'User'; // You can replace this with the actual user's name
+
+            const message = {
+                content: content,
+                sender: sender
+            };
+
+            stompClient.send("/app/chat/message", {}, JSON.stringify(message));
+            document.getElementById('messageInput').value = '';
+        }
+
+        function displayMessage(message) {
+            const chatDiv = document.getElementById('chat');
+            const messageParagraph = document.createElement('p');
+            messageParagraph.textContent = `${message.sender}: ${message.content}`;
+            chatDiv.appendChild(messageParagraph);
+        }
+    </script>
+</body>
+</html>
